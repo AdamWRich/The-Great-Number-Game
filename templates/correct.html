@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Montserrat+Alternates:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css')}}">
+    <title>Great Number Game</title>
+</head>
+<body>
+    <section id='welcome' class="section__title section__title--Welcome">
+        <h1>You Won the Great Number Game!</h1>
+    </section>
+    <section class="section__title section__title--winners">
+        <div class="correct">
+            <h2>{{num}} was the number</h2>
+        </div>
+        <div class="box2">
+            <h2> That took you {{session['visits']}} guesses</h2>
+            <div class="options">
+                <a id="play_again" href='/play_again'>Play Again!</a>
+                <div class="leaderboard">
+                    <form class='leaderboard_form' action="/leaderboard" method="post">
+                        <label for="input">Enter your username here to save your score to a leaderboard!</label>
+                        <input id="username" type="text" name='username' method='post'>
+                        <input type="submit" id="leaderboard_submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>

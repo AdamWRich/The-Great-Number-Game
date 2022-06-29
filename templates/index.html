@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Montserrat+Alternates:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css')}}">
+    <title>Great Number Game</title>
+</head>
+<body>
+    <section id='welcome' class="section__title section__title--Welcome">
+        <h1>The Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100...</p>
+        <p>Take a guess!</p>
+    </section>
+    <section class="section__title section__title--Hints">
+        {% if 'guess' in session: %}
+            {% if session['guess'] < session['num'] %}
+                <div class="box too_low">
+                    <h2>Too Low!</h2>
+                </div>
+            {% endif %}
+            {% if session['guess'] > session['num'] %}
+                <div class="box too_high">
+                    <h2>Too high!</h2>
+                </div>
+            {% endif %}
+        {% endif %}
+    </section>
+    <section class="section__title section__title--user_input">
+        <form id="user_input_form" action="/guess" method="post">
+            <label for="input">Guess Count: {{session['visits']}}</label>
+            <input id="guess" type="text" name='guess' method='post'>
+            <input id="guess_btn" value='Guess!' type='submit'>
+        </form>
+    </section>
+    
+</body>
+</html>
